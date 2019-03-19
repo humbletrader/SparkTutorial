@@ -36,3 +36,8 @@ val fullJoined = parFirstNames.fullOuterJoin(parLastNames)
 
 [Difference between foldByKey, reduceByKey, aggregateByKey, combineByKey (also groupByKey)](https://stackoverflow.com/questions/43364432/spark-difference-between-reducebykey-vs-groupbykey-vs-aggregatebykey-vs-combineb)
 
+[What is task, stage, job]()
+
+[difference between rdd, dataframe, dataset]
+
+
