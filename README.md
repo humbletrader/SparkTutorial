@@ -4,13 +4,13 @@ Spark tutorial (with scala)
 
 # Put this in jupyter
 
+```scala
 val firstNames = Array("aaaa", "bbbb", "cccc", "ddddd")
 val lastNames = Array("aaa", "bbb", "ccc")
 
 //testing the zip operation
 //val firstAndLastNames = sc.parallelize(firstNames).zip(sc.parallelize(lastNames))
 //org.apache.spark.SparkException: Can only zip RDDs with same number of elements in each partition
-
 
 val firstNames = Map(1 -> "aaaa", 2 -> "bbbb", 3 -> "cccc", 4 -> "DDDD")
 val lastNames = Map(1 -> "aaa", 2 -> "bbb", 3 -> "ccc", 5 -> "EEE")
@@ -30,3 +30,8 @@ val rightJoined = parallelFirstNames.rightOuterJoin(parallelLastNames)
 
 val fullJoined = parFirstNames.fullOuterJoin(parLastNames)
 //Array((4,(Some(DDDD),None)), (1,(Some(aaaa),Some(aaa))), (5,(None,Some(EEE))), (2,(Some(bbbb),Some(bbb))), (3,(Some(cccc),Some(ccc))))
+```
+
+Difference between rdd.fold and rdd.reduce
+
+Difference between keyedRdd.foldByKey, keyedRdd.reduceByKey, keyedRdd.aggregateByKey, keyedRdd.combineByKey ( also check groupByKey)
