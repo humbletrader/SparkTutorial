@@ -32,6 +32,7 @@ val fullJoined = parFirstNames.fullOuterJoin(parLastNames)
 //Array((4,(Some(DDDD),None)), (1,(Some(aaaa),Some(aaa))), (5,(None,Some(EEE))), (2,(Some(bbbb),Some(bbb))), (3,(Some(cccc),Some(ccc))))
 ```
 
-Difference between rdd.fold and rdd.reduce
+[Difference between rdd.fold and rdd.reduce](https://stackoverflow.com/questions/26634814/why-are-aggregate-and-fold-two-different-apis-in-spark)
 
-Difference between keyedRdd.foldByKey, keyedRdd.reduceByKey, keyedRdd.aggregateByKey, keyedRdd.combineByKey ( also check groupByKey)
+[Difference between foldByKey, reduceByKey, aggregateByKey, combineByKey (also groupByKey)](https://stackoverflow.com/questions/43364432/spark-difference-between-reducebykey-vs-groupbykey-vs-aggregatebykey-vs-combineb)
+
