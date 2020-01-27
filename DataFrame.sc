@@ -26,5 +26,7 @@ val personsFromDisk = spark.read.parquet("/tmp/test/personsp.parquet")
 
 //selecting from DF
 personsFromDisk.createOrReplaceTempView("PersonTable")
-val result = spark.sql("select * from PersonsTable")
+val filteredResult = spark.sql("select * from PersonTable where gender = 'M'")
+
+filteredResult.explain
 
