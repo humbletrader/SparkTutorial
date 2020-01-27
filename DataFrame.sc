@@ -1,21 +1,21 @@
 case class Person(firstName: String, lastName: String, age: Int, gender: String, salary: Double)
-val personIter = Iterator.tabulate(100){idx => 
+val personSeq = Seq.tabulate(100){idx => 
     Person(
         s"firstName $idx", 
         s"lastName $idx", 
         idx, 
         if(idx % 2 == 0) "M" else "F", 
-        scala.util.Random.nextDouble * 1000
+        if(idx %2 ==0) 1000 else 2000
     )
 }
 
 //creating df from rdd
-val personRdd = sc.parallelize(personIter.toSeq)
+val personRdd = sc.parallelize(personSeq)
 val personDf = personRdd.toDF()
 
 //creating df from Seq
 import spark.implicits._
-val dfFromSeq = personIter.toSeq.toDF()
+val dfFromSeq = personSeq.toDF()
 
 //writing to parquet
 personDf.write.partitionBy("gender").parquet("/tmp/test/persons.parquet")
