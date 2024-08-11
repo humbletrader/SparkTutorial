@@ -12,7 +12,6 @@ val rddFirstNames = sc.parallelize(firstNames.toSeq)
 val rddLastNames = sc.parallelize(lastNames.toSeq)
 
 val joined = rddFirstNames.join(rddLastNames)
-
 //result  Array((1,(aaaa,aaa)), (2,(bbbb,bbb)), (3,(cccc,ccc)))
 
 val leftJoined = rddFirstNames.leftOuterJoin(rddLastNames)
@@ -24,6 +23,7 @@ val rightJoined = rddFirstNames.rightOuterJoin(rddLastNames)
 val fullJoined = rddFirstNames.fullOuterJoin(rddLastNames)
 //Array((4,(Some(DDDD),None)), (1,(Some(aaaa),Some(aaa))), (5,(None,Some(EEE))), (2,(Some(bbbb),Some(bbb))), (3,(Some(cccc),Some(ccc))))
 
+//rdd operations: co-group
 
 //rdd operations:  toDF - rdd to dataframe
 rddFirstNames.toDF

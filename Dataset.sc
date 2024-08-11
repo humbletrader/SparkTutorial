@@ -41,6 +41,11 @@ employeesDS.select($"firstName").where($"salary" > 1300)
 
 //dataset operations: aggregations
 
+//dataset operations: join two datasets
+
+//dataset operations: repartitioning
+employeesDS.repartition
+
 //dataset operations: to rdd
 
 //dataset operations: to dataframe
