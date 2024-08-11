@@ -28,9 +28,10 @@ val personsFromDisk = spark.read.parquet("/tmp/test/personsp.parquet")
 personsFromDisk.createOrReplaceTempView("PersonTable")
 val filteredResult = spark.sql("select * from PersonTable where gender = 'M'")
 
-//one level deep phisical plan
+//one level deep physical plan
 filteredResult.explain
 
-//deeper phisical plan with pushed filters
+
+//deeper physical plan with pushed filters
 spark.sql("select firstName from persontable where salary > 1000").explain
 
