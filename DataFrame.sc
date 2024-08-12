@@ -18,10 +18,12 @@ import spark.implicits._
 val dfFromSeq = personSeq.toDF()
 
 //writing to parquet
-personDf.write.partitionBy("gender").parquet("/tmp/test/persons.parquet")
+personDf.write.partitionBy("gender")
+  .parquet("/tmp/test/persons.parquet")
 
 //reading from parquet
-val personsFromDisk = spark.read.parquet("/tmp/test/personsp.parquet")
+val personsFromDisk = spark.read
+  .parquet("/tmp/test/personsp.parquet")
 
 
 //selecting from DF

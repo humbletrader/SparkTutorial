@@ -7,8 +7,8 @@ case class Person(firstName: String,
 
 val personSeq = Seq.tabulate(100){idx => 
     Person(
-        s"firstName $idx", 
-        s"lastName $idx", 
+        s"fn $idx",
+        s"ln $idx",
         idx, 
         if(idx % 2 == 0) "M" else "F"
     )
@@ -22,7 +22,6 @@ personsDS.show
 //showing the schema behind this DS
 personsDS.schema
 
-
 case class Employee(firstName: String,
                     lastName: String,
                     age: Int,
@@ -30,14 +29,17 @@ case class Employee(firstName: String,
                     salary: Double)
 
 //dataset operations: filtering and mapping
-val employeesDS = personsDS.filter(_.age > 18).map{case Person(first, last, age, gender) =>
-    Employee(first, last, age, gender, 1000.0)
-}
+val employeesDS = personsDS.filter(_.age > 18)
+  .map{case Person(first, last, age, gender) =>
+    Employee(first, last, age, gender, 100.1 * age)
+  }
 employeesDS.show
 
 
 //dataset operations: select/where
-employeesDS.select($"firstName").where($"salary" > 1300)
+employeesDS
+  .select($"firstName")
+  .where($"salary" > 1300)
 
 //dataset operations: aggregations
 
