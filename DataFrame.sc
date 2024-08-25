@@ -1,6 +1,7 @@
-case class Person(firstName: String, lastName: String, age: Int, gender: String, salary: Double)
+case class Person(id: Int, firstName: String, lastName: String, age: Int, gender: String, salary: Double)
 val personSeq = Seq.tabulate(100){idx => 
     Person(
+        idx,
         s"firstName $idx", 
         s"lastName $idx", 
         idx, 
@@ -23,7 +24,7 @@ personDf.write.partitionBy("gender")
 
 //reading from parquet
 val personsFromDisk = spark.read
-  .parquet("/tmp/test/personsp.parquet")
+  .parquet("/tmp/test/persons.parquet")
 
 
 //selecting from DF
@@ -32,7 +33,6 @@ val filteredResult = spark.sql("select * from PersonTable where gender = 'M'")
 
 //one level deep physical plan
 filteredResult.explain
-
 
 //deeper physical plan with pushed filters
 spark.sql("select firstName from persontable where salary > 1000").explain

@@ -1,12 +1,14 @@
 // run this is spark shell
-case class Person(firstName: String,
-                  lastName: String,
-                  age: Int,
-                  gender: String
+case class Person( id : Int,
+                   firstName: String,
+                   lastName: String,
+                   age: Int,
+                   gender: String
                  )
 
 val personSeq = Seq.tabulate(100){idx => 
     Person(
+        idx,
         s"fn $idx",
         s"ln $idx",
         idx, 
@@ -22,16 +24,17 @@ personsDS.show
 //showing the schema behind this DS
 personsDS.schema
 
-case class Employee(firstName: String,
-                    lastName: String,
-                    age: Int,
-                    gender: String,
-                    salary: Double)
+case class Employee(  id: Int,
+                      firstName: String,
+                      lastName: String,
+                      age: Int,
+                      gender: String,
+                      salary: Double)
 
 //dataset operations: filtering and mapping
 val employeesDS = personsDS.filter(_.age > 18)
-  .map{case Person(first, last, age, gender) =>
-    Employee(first, last, age, gender, 100.1 * age)
+  .map{case Person(id, first, last, age, gender) =>
+    Employee(id, first, last, age, gender, 100.1 * age)
   }
 employeesDS.show
 
@@ -44,6 +47,20 @@ employeesDS
 //dataset operations: aggregations
 
 //dataset operations: join two datasets
+personsDS.join(employeesDS, personsDS("id") === employeesDS("id"), "inner").show
+
+personsDS.join(employeesDS, personsDS("id") === employeesDS("id"), "outer").show
+personsDS.join(employeesDS, personsDS("id") === employeesDS("id"), "leftouter").show
+
+personsDS.join(employeesDS, personsDS("id") === employeesDS("id"), "rigthouter").show
+
+personsDS.join(employeesDS, personsDS("id") === employeesDS("id"), "fullouter").show
+
+personsDS.join(employeesDS, personsDS("id") === employeesDS("id"), "semi").show
+personsDS.join(employeesDS, personsDS("id") === employeesDS("id"), "leftsemi").show
+
+personsDS.join(employeesDS, personsDS("id") === employeesDS("id"), "anti").show
+personsDS.join(employeesDS, personsDS("id") === employeesDS("id"), "leftanti").show
 
 //dataset operations: repartitioning
 employeesDS.repartition
