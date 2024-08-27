@@ -10,7 +10,7 @@ object DataFrameTutorialJob extends SparkTutorialConfigReader with Logging {
 
   def main(args: Array[String]): Unit = {
 
-    implicit val spark : SparkSession = SparkSession.builder()
+    implicit val spark: SparkSession = SparkSession.builder()
       .appName("DataFrameTutorial")
       .getOrCreate()
 
