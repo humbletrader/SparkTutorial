@@ -39,6 +39,9 @@ object DataFrameTutorialJob extends SparkTutorialConfigReader with Logging {
     log.info("reading from parquet")
     val personsFromDisk = spark.read.parquet("/tmp/test/persons.parquet")
 
+    log.info("programmatic selecting columns and filtering")
+    personsFromDisk.select("firstName", "lastName").filter("age > 18").show()
+
     log.info("selecting from DF when predicates are pushed down")
     personsFromDisk.createOrReplaceTempView("PersonsTable")
     val malesDataFrame = spark.sql("select * from PersonsTable where gender = 'M'")

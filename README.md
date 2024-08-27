@@ -22,3 +22,7 @@ Spark tutorial (with scala)
 ## Spark interview questions:
 * [Spark SQL interview](https://www.linkedin.com/pulse/spark-sql-sqlhive-commonly-asked-questions-data-ram-ghadiyaram?trk=public_profile_article_view)
 
+## Todo
+    * dataset optimizations
+    * catalyst optimizer
+    * project tungsten
