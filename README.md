@@ -26,3 +26,4 @@ Spark tutorial (with scala)
     * dataset optimizations
     * catalyst optimizer
     * project tungsten
+    * check if spark sql supports lateral joins 
