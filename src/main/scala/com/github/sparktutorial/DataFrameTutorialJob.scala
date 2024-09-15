@@ -1,7 +1,7 @@
 package com.github.sparktutorial
 
 import com.github.sparktutorial.config.SparkTutorialConfigReader
-import com.github.sparktutorial.refdata.Person
+import com.github.sparktutorial.refdata.{Person, PersonWithAge}
 import com.github.sparktutorial.utils.logging.Logging
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{SaveMode, SparkSession}
@@ -18,7 +18,7 @@ object DataFrameTutorialJob extends SparkTutorialConfigReader with Logging {
 
     log.info(s"running spark tutorial with config $config")
     val personSeq = Seq.tabulate(100){idx =>
-      Person(
+      PersonWithAge(
         idx,
         s"fn $idx",
         s"ln $idx",
@@ -28,13 +28,16 @@ object DataFrameTutorialJob extends SparkTutorialConfigReader with Logging {
     }
 
     log.info("creating a dataframe from a RDD")
-    val personsRdd : RDD[Person]= spark.sparkContext.parallelize(personSeq)
+    val personsRdd : RDD[PersonWithAge]= spark.sparkContext.parallelize(personSeq)
     import spark.implicits._
     val personsDataFrame = personsRdd.toDF()
     personsDataFrame.show()
 
     log.info("writing to parquet partitioned")
-    personsDataFrame.write.mode(SaveMode.Overwrite).partitionBy("gender").parquet("/tmp/test/persons.parquet")
+    personsDataFrame
+      .write.mode(SaveMode.Overwrite)
+      .partitionBy("gender")
+      .parquet("/tmp/test/persons.parquet")
 
     log.info("reading from parquet")
     val personsFromDisk = spark.read.parquet("/tmp/test/persons.parquet")

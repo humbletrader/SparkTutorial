@@ -1,19 +1,24 @@
 package com.github.sparktutorial.refdata
 
+import org.apache.spark.sql.types.DateType
+
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+
 object Generator {
 
   def createPersons(): Seq[Person] = {
     Seq(
-      Person(1, "John", "Doe", 25, "M"),
-      Person(2, "Jane", "Doe", 22, "F"),
-      Person(3, "Tom", "Smith", 30, "M"),
-      Person(4, "Jill", "Johnson", 28, "F"),
-      Person(5, "Bill", "Doe", 27, "M"),
-      Person(6, "Jill", "Smith", 29, "F"),
-      Person(7, "Tom", "Johnson", 31, "M"),
-      Person(8, "John", "Smith", 26, "M"),
-      Person(9, "Jane", "Johnson", 23, "F"),
-      Person(10, "Bill", "Smith", 32, "M")
+      Person(1, "John", "Doe",  "M",  "1980-12-31"),
+      Person(2, "Jane", "Doe",  "F",  "1989-12-31"),
+      Person(3, "Tom", "Smith",  "M", "1976-12-31"),
+      Person(4, "Jill", "Johnson", "F", "1990-12-31"),
+      Person(5, "Bill", "Doe",  "M",    "1999-12-31"),
+      Person(6, "Jill", "Smith", "F",   "1956-12-31"),
+      Person(7, "Tom", "Johnson", "M",  "2000-12-31"),
+      Person(8, "John", "Smith",  "M",  "1980-12-31"),
+      Person(9, "Jane", "Johnson", "F", "1980-12-31"),
+      Person(10, "Bill", "Smith", "M",  "1980-12-31")
     )
   }
 
@@ -31,5 +36,15 @@ object Generator {
       Employee(10, "Bill", "Smith", "Marketing", 2000.0)
     )
   }
+
+  private def computeAge(birthDateAsString: String): Int = {
+    import java.time.LocalDate
+
+    val now = LocalDate.now()
+    val birthDate = LocalDate.parse(birthDateAsString, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+    ChronoUnit.YEARS.between(birthDate, now).toInt
+  }
+
+  val udfComputeAge = org.apache.spark.sql.functions.udf(computeAge _)
 
 }
