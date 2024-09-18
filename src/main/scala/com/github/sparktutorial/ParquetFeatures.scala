@@ -29,9 +29,9 @@ object ParquetFeatures {
 
     import spark.implicits._
     val data = Seq(
-      PersonAndAddress(1, "John Doe", Address("123 Main St", "Springfield", "IL", "62701", SecretInfo("secret1", List("hidden1", "hidden2")))),
-      PersonAndAddress(2, "Jane Doe", Address("456 Main St", "Springfield", "IL", "62701", SecretInfo("secret1", List("hidden1", "hidden2")))),
-      PersonAndAddress(3, "Foo Bar", Address("789 Main St", "Springfield", "IL", "62701", SecretInfo("secret1", List("hidden1", "hidden2"))))
+      PersonAndAddress(1, "John Doe", Address("123 Main St", "Springfield", "IL", "62701", SecretInfo("secret info for john", List("hidden1", "hidden2")))),
+      PersonAndAddress(2, "Jane Doe", Address("456 Main St", "Los Angeles", "IL", "62701", SecretInfo("secret info for jane", List("hidden1", "hidden2")))),
+      PersonAndAddress(3, "Foo Bar", Address("789 Main St", "New York", "IL", "62701", SecretInfo("secret info for foo", List("hidden1", "hidden2"))))
     )
     val df = spark.createDataFrame(data)
     df.show()
@@ -40,6 +40,7 @@ object ParquetFeatures {
 
     val dfFromDisk = spark.read.parquet("./output/complexdatastructure")
     dfFromDisk.show()
+    dfFromDisk.select("name", "address.city", "address.secretInfo.secret").show()
 
     spark.stop()
   }
