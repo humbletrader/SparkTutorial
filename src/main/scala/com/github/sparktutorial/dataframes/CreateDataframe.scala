@@ -1,14 +1,15 @@
 package com.github.sparktutorial.dataframes
 
+import com.github.sparktutorial.utils.logging.Logging
 import org.apache.spark.sql.types.{DataTypes, StructField, StructType}
 import org.apache.spark.sql.{Dataset, Row, SparkSession}
 
 import scala.collection.JavaConverters._
 
-object CreateDataframe {
+object CreateDataframe extends Logging{
 
   def main(args: Array[String]): Unit = {
-    val spark = SparkSession.builder()
+    implicit val spark = SparkSession.builder()
       .appName("DataFrameTutorial")
       .getOrCreate()
 
@@ -28,8 +29,17 @@ object CreateDataframe {
         |1010,Sofia,Ketty,Sales Coordinator,Sales,20000
         |""".stripMargin.lines().toList.asScala
 
+    sparkInfersTheSchema(csvDataAsScalaSeq)
+
+    //read data by telling spark what is the structure
+    userDefinedSchema(csvDataAsScalaSeq)
+  }
+
+
+  private def sparkInfersTheSchema(csvData: Seq[String])
+                                  (implicit spark: SparkSession) : Unit = {
     import spark.implicits._
-    val datasetOfLines: Dataset[String] = csvDataAsScalaSeq.toDS
+    val datasetOfLines: Dataset[String] = csvData.toDS
 
     //read data by letting spark to infer the types
     val datasetWithInferredSchema: Dataset[Row] = spark.read
@@ -39,8 +49,10 @@ object CreateDataframe {
 
     datasetWithInferredSchema.printSchema()
     datasetWithInferredSchema.show
+  }
 
-    //read data by telling spark what is the structure
+  private def userDefinedSchema(csvData: Seq[String])
+                               (implicit spark: SparkSession) : Unit = {
     val schema = StructType(Array(
       StructField("id", DataTypes.IntegerType),
       StructField("firstName", DataTypes.StringType),
@@ -50,11 +62,13 @@ object CreateDataframe {
       StructField("salary", DataTypes.IntegerType)
     ))
 
-    val rddOfRows = spark.sparkContext.parallelize(csvDataAsScalaSeq).map(line => Row(line.split(",")))
+    val rddOfRows = spark.sparkContext.parallelize(csvData.drop(2))
+      .map(line => line.split(","))
+      .map(values => Row(values(0).toInt, values(1), values(2), values(3), values(4), values(5).toInt))
 
     val dataframeWithSchema = spark.createDataFrame(rddOfRows, schema)
     dataframeWithSchema.printSchema()
     dataframeWithSchema.show()
-
   }
+
 }

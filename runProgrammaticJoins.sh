@@ -1,11 +1,14 @@
-#!/bin/bash
+#!/bin/sh
+
+
+#!/usr/bin/env bash
 
 JAR_PATH=$(ls -1tr target/SparkTutorial*.jar | head -n1)
 
 echo $JAR_PATH
 
 spark-submit \
-        --class "com.github.sparktutorial.datasets.ComplexStructureSupport" \
+        --class "com.github.sparktutorial.datasets.ProgrammaticJoining" \
         --master "local[*]" \
         --driver-memory 10g \
         --executor-memory 10g \

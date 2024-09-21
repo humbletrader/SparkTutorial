@@ -1,6 +1,6 @@
-package com.trg.crimes
+package com.github.sparktutorial.rdd
 
-import com.github.sparktutorial.config.{SparkTutorialConfig, SparkTutorialConfigReader}
+import com.github.sparktutorial.config.SparkTutorialConfigReader
 import com.github.sparktutorial.utils.logging.Logging
 import org.apache.spark.sql.SparkSession
 

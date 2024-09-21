@@ -5,7 +5,7 @@ JAR_PATH=$(ls -1tr target/SparkTutorial*.jar | head -n1)
 echo $JAR_PATH
 
 spark-submit \
-        --class "com.github.sparktutorial.ParquetFeatures" \
+        --class "com.github.sparktutorial.datasets.ComplexStructureSupport" \
         --master "local[*]" \
         --driver-memory 10g \
         --executor-memory 10g \
@@ -13,3 +13,4 @@ spark-submit \
         ${JAR_PATH} \
         \
         config.file=./config/config.properties 2>&1 | tee run.log
+

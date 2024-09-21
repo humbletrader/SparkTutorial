@@ -1,4 +1,4 @@
-package com.github.sparktutorial
+package com.github.sparktutorial.dataframes
 
 import com.github.sparktutorial.config.SparkTutorialConfigReader
 import com.github.sparktutorial.refdata.PersonWithAge

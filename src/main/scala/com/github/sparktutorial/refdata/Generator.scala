@@ -18,7 +18,8 @@ object Generator {
       Person(7, "Tom", "Johnson", "M",  "2000-12-31"),
       Person(8, "John", "Smith",  "M",  "1980-12-31"),
       Person(9, "Jane", "Johnson", "F", "1980-12-31"),
-      Person(10, "Bill", "Smith", "M",  "1980-12-31")
+      Person(10, "Bill", "Smith", "M",  "1980-12-31"),
+      Person(100, "Child", "Unemployed", "M",  "2020-12-31") //this is not in the employees table
     )
   }
 
@@ -33,11 +34,13 @@ object Generator {
       Employee(7, "Tom", "Johnson", "Marketing", 1700.0),
       Employee(8, "John", "Smith", "Engineering", 1800.0),
       Employee(9, "Jane", "Johnson", "Sales", 1900.0),
-      Employee(10, "Bill", "Smith", "Marketing", 2000.0)
+      Employee(10, "Bill", "Smith", "Marketing", 2000.0),
+      Employee(11, "NoPerson", "Record", "Marketing", 2000.0) //<--- this is not in the Person data
+
     )
   }
 
-  private def computeAge(birthDateAsString: String): Int = {
+  def computeAge(birthDateAsString: String): Int = {
     import java.time.LocalDate
 
     val now = LocalDate.now()
@@ -45,6 +48,6 @@ object Generator {
     ChronoUnit.YEARS.between(birthDate, now).toInt
   }
 
-  val udfComputeAge = org.apache.spark.sql.functions.udf(computeAge _)
+
 
 }

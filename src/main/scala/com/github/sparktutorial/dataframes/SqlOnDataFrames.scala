@@ -1,7 +1,7 @@
-package com.github.sparktutorial
+package com.github.sparktutorial.dataframes
 
 import com.github.sparktutorial.config.SparkTutorialConfigReader
-import com.github.sparktutorial.refdata.{Person, PersonWithAge}
+import com.github.sparktutorial.refdata.PersonWithAge
 import com.github.sparktutorial.utils.logging.Logging
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{SaveMode, SparkSession}
