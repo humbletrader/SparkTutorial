@@ -31,6 +31,12 @@ object ComplexStructureSupport extends Logging{
     dfFromDisk.show()
     dfFromDisk.select("person.firstName", "address.city", "address.secret.secretKey").show()
 
+    val dataframeWithComplexStructure = datasetWithComplexStructure.toDF()
+    dataframeWithComplexStructure.printSchema()
+
+    //dataframe back to dataset
+    dataframeWithComplexStructure.as[PersonWithAddress]
+
   }
 
 }

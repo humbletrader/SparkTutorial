@@ -1,12 +1,13 @@
-package com.github.sparktutorial
+package com.github.sparktutorial.dataframes
 
 import com.github.sparktutorial.config.SparkTutorialConfigReader
 import com.github.sparktutorial.utils.logging.Logging
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.execution.ExtendedMode
 
 import scala.collection.JavaConverters._
 
-object SqlTutorialJob extends SparkTutorialConfigReader with Logging {
+object SqlTutorial extends SparkTutorialConfigReader with Logging {
 
   def main(args: Array[String]): Unit = {
 
@@ -49,18 +50,7 @@ object SqlTutorialJob extends SparkTutorialConfigReader with Logging {
         |""".stripMargin)
 
     sqlResultDataFrame.show()
-    sqlResultDataFrame.explain()
-
-    //24/08/27 19:23:06 WARN WindowExec: No Partition Defined for Window operation! Moving all data to a single partition,
-    // this can cause serious performance degradation.
-    //== Physical Plan ==
-    //AdaptiveSparkPlan isFinalPlan=false
-    //+- Filter (rank#51 = 5)
-    //   +- Window [dense_rank(salary#19) windowspecdefinition(salary#19 DESC NULLS LAST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS rank#51], [salary#19 DESC NULLS LAST]
-    //      +- Sort [salary#19 DESC NULLS LAST], false, 0
-    //         +- Exchange SinglePartition, ENSURE_REQUIREMENTS, [plan_id=138]
-    //            +- Project [first_name#15, last_name#16, department#18, salary#19]
-    //               +- Scan ExistingRDD[ID#14,FIRST_NAME#15,LAST_NAME#16,DESIGNATION#17,DEPARTMENT#18,SALARY#19]
+    sqlResultDataFrame.explain(ExtendedMode.name)
 
     log.info("select the 2nd largest salary with partition on department")
     val rankWithPartition = spark.sql(
