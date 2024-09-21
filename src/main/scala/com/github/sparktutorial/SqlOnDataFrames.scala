@@ -6,7 +6,7 @@ import com.github.sparktutorial.utils.logging.Logging
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{SaveMode, SparkSession}
 
-object DataFrameTutorialJob extends SparkTutorialConfigReader with Logging {
+object SqlOnDataFrames extends SparkTutorialConfigReader with Logging {
 
   def main(args: Array[String]): Unit = {
 

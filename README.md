@@ -17,7 +17,7 @@ Spark tutorial (with scala)
 ## Joins
  * [Types of joins](https://www.waitingforcode.com/apache-spark-sql/join-types-spark-sql/read)
  * [Joins Explained](https://medium.com/@amarkrgupta96/join-strategies-in-apache-spark-a-hands-on-approach-d0696fc0a6c9)
- * [Catalyst optimizer : Logical plan, Physical plan, Code generation](https://medium.com/datalex/sparks-logical-and-physical-plans-when-why-how-and-beyond-8cd1947b605a)
+ * [Catalyst optimizer: Logical plan, Physical plan, Code generation](https://medium.com/datalex/sparks-logical-and-physical-plans-when-why-how-and-beyond-8cd1947b605a)
 
 ## Spark interview questions:
 * [Spark SQL interview](https://www.linkedin.com/pulse/spark-sql-sqlhive-commonly-asked-questions-data-ram-ghadiyaram?trk=public_profile_article_view)
@@ -27,3 +27,4 @@ Spark tutorial (with scala)
     * catalyst optimizer
     * project tungsten
     * check if spark sql supports lateral joins 
+    * partitonBy vs bucketBy
