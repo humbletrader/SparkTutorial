@@ -20,9 +20,6 @@ Spark tutorial (with scala)
 * [Repartition/Coalesce/PartitionBy](https://medium.com/@vikaskumar.ran/spark-repartition-vs-coalesce-and-when-to-use-which-3f269b47a5dd)
 
 
-## DataFrames
-
-
 ## Joins
  * [Types of joins](https://www.waitingforcode.com/apache-spark-sql/join-types-spark-sql/read)
  * [Joins Explained](https://medium.com/@amarkrgupta96/join-strategies-in-apache-spark-a-hands-on-approach-d0696fc0a6c9)
