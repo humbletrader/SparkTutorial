@@ -1,6 +1,7 @@
 package com.github.sparktutorial
 
 import com.github.sparktutorial.utils.logging.Logging
+import org.apache.spark.sql.Dataset
 
 /**
  * we emphasize the difference between partitioning an RDD and partitioning a dataset when writing it to disk
@@ -49,6 +50,15 @@ object RddPartitioningVsDatasetWriterPartitioning extends Logging{
     //1. the RDD partitioning ( 4 partitions ) are inherited by the dataset
     //2. the dataset  is further partitioned by the employed column at write time so for employed=true and employed=false
     // we will have 4 output files each ( 4 partitions write in 2 directories = 8 output files)
+
+
+    //now let's try to read the data back but controlling the partitioning of the dataset
+    val rddWithFourPartitions = spark.sparkContext.parallelize(Seq(0, 1, 2, 3), 4)
+    //transform rdd to dataset
+    val datasetWithFourPartitions = spark.createDataset(rddWithFourPartitions)
+    //datasetWithFourPartitions.transform(t => Dataset(t.sparkSession, t.queryExecution, t.encoder))
+
+    val dataset = spark.read.option("header", "true").csv("./output/datasetFromRdd")
 
     // Stop the SparkSession
     spark.stop()
