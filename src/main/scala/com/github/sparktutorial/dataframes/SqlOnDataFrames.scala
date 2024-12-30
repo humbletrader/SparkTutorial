@@ -65,7 +65,7 @@ object SqlOnDataFrames extends SparkTutorialConfigReader with Logging {
     //      PushedFilters: [],
     //      ReadSchema: struct<id:int,firstName:string,lastName:string,age:int>
 
-    log.info("deeper physical plan with pushed filters")
+    log.info("deeper physical plan with pushed filters") //LE: there are no pushed filters here
     spark.sql("select firstName from PersonsTable where age > 18").explain
     //24/08/27 19:06:28 INFO DataSourceStrategy: Pruning directories with:
     //24/08/27 19:06:28 INFO FileSourceStrategy: Pushed Filters: IsNotNull(age),GreaterThan(age,18)

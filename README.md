@@ -4,6 +4,7 @@ Spark tutorial (with scala)
 ## Existing spark tutorials that worth mention 
  * [sparkcodehum](https://www.sparkcodehub.com/spark-tutorial)
  * [mungingdata.com](https://www.mungingdata.com)
+ * [The internals of spark](https://books.japila.pl/spark-sql-internals/)
 
 ## Spark general knowledge 
  * [difference between rdd, dataframe, dataset](https://stackoverflow.com/questions/31508083/difference-between-dataframe-dataset-and-rdd-in-spark)
@@ -24,6 +25,9 @@ Spark tutorial (with scala)
  * [Catalyst optimizer: Logical plan, Physical plan, Code generation](https://medium.com/datalex/sparks-logical-and-physical-plans-when-why-how-and-beyond-8cd1947b605a)
  * [Logical and Physical Plan](https://medium.com/datalex/sparks-logical-and-physical-plans-when-why-how-and-beyond-8cd1947b605a)
  * [Video explanation for logical and physical plan](https://youtu.be/GtRGwUUSUB4?feature=shared)   
+* [PartitionBy vs Bucketing](https://medium.com/@paulamaranon/partitionby-vs-bucketing-in-apache-spark-42a3cec2d22f)
+* Disk Partitioning vs. Memory Partitioning : todo
+* [SaveAsTable vs Save](https://medium.com/@tomhcorbin/data-storage-in-pyspark-save-vs-saveastable-8787e9370dde)
 
 ## Joins
  * [Types of joins](https://www.waitingforcode.com/apache-spark-sql/join-types-spark-sql/read)
