@@ -30,18 +30,29 @@ object RddJoins extends SparkTutorialConfigReader with Logging {
     val rddLastNames = sc.parallelize(lastNames.toSeq)
 
     val joined = rddFirstNames.join(rddLastNames)
+    println(joined.collect.mkString("\n"))
     //result  Array((1,(aaaa,aaa)), (2,(bbbb,bbb)), (3,(cccc,ccc)))
 
     val leftJoined = rddFirstNames.leftOuterJoin(rddLastNames)
+    println(leftJoined.collect.mkString("\n"))
     //Array((4,(DDDD,None)), (1,(aaaa,Some(aaa))), (2,(bbbb,Some(bbb))), (3,(cccc,Some(ccc))))
 
     val rightJoined = rddFirstNames.rightOuterJoin(rddLastNames)
+    println(rightJoined.collect.mkString("\n"))
     //Array((1,(Some(aaaa),aaa)), (5,(None,EEE)), (2,(Some(bbbb),bbb)), (3,(Some(cccc),ccc)))
 
     val fullJoined = rddFirstNames.fullOuterJoin(rddLastNames)
+    println(fullJoined.collect().mkString("\n"))
     //Array((4,(Some(DDDD),None)), (1,(Some(aaaa),Some(aaa))), (5,(None,Some(EEE))), (2,(Some(bbbb),Some(bbb))), (3,(Some(cccc),Some(ccc))))
 
     //rdd operations: co-group
+    val cogrouped = rddFirstNames.cogroup(rddLastNames)
+    println(cogrouped.collect().mkString("\n"))
+    //(4,(CompactBuffer(DDDD),CompactBuffer()))
+    //(1,(CompactBuffer(aaaa),CompactBuffer(aaa)))
+    //(5,(CompactBuffer(),CompactBuffer(EEE)))
+    //(2,(CompactBuffer(bbbb),CompactBuffer(bbb)))
+    //(3,(CompactBuffer(cccc),CompactBuffer(ccc)))
 
     log.info("spark tutorial run successfully !")
   }
