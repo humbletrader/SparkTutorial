@@ -7,5 +7,6 @@
 
 .idea/
 target/
+output/
 
 todo.txt
