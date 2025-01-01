@@ -25,9 +25,9 @@ Spark tutorial (with scala)
  * [Catalyst optimizer: Logical plan, Physical plan, Code generation](https://medium.com/datalex/sparks-logical-and-physical-plans-when-why-how-and-beyond-8cd1947b605a)
  * [Logical and Physical Plan](https://medium.com/datalex/sparks-logical-and-physical-plans-when-why-how-and-beyond-8cd1947b605a)
  * [Video explanation for logical and physical plan](https://youtu.be/GtRGwUUSUB4?feature=shared)   
-* [PartitionBy vs Bucketing](https://medium.com/@paulamaranon/partitionby-vs-bucketing-in-apache-spark-42a3cec2d22f)
-* Disk Partitioning vs. Memory Partitioning : todo
-* [SaveAsTable vs Save](https://medium.com/@tomhcorbin/data-storage-in-pyspark-save-vs-saveastable-8787e9370dde)
+ * [PartitionBy vs Bucketing](https://medium.com/@paulamaranon/partitionby-vs-bucketing-in-apache-spark-42a3cec2d22f)
+ * Disk Partitioning vs. Memory Partitioning : todo
+ * [SaveAsTable vs Save](https://medium.com/@tomhcorbin/data-storage-in-pyspark-save-vs-saveastable-8787e9370dde)
 
 ## Joins
  * [Types of joins](https://www.waitingforcode.com/apache-spark-sql/join-types-spark-sql/read)

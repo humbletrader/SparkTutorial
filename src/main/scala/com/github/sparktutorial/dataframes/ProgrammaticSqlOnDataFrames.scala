@@ -1,6 +1,6 @@
 package com.github.sparktutorial.dataframes
 
-import com.github.sparktutorial.config.SparkTutorialConfigReader
+import com.github.sparktutorial.config.{SparkTutorialConfig, SparkTutorialConfigReader}
 import com.github.sparktutorial.refdata.PersonWithAge
 import com.github.sparktutorial.utils.logging.Logging
 import org.apache.spark.sql.SparkSession
@@ -13,7 +13,7 @@ object ProgrammaticSqlOnDataFrames extends SparkTutorialConfigReader with Loggin
       .appName("DataFrameTutorial")
       .getOrCreate()
 
-    implicit val config = readConfig(args)
+    implicit val config : SparkTutorialConfig = readConfig(args)
 
     log.info(s"running spark tutorial with config $config")
     val personSeq = Seq.tabulate(100) { idx =>

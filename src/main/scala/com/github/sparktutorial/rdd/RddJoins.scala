@@ -54,6 +54,8 @@ object RddJoins extends SparkTutorialConfigReader with Logging {
     //(2,(CompactBuffer(bbbb),CompactBuffer(bbb)))
     //(3,(CompactBuffer(cccc),CompactBuffer(ccc)))
 
+    sc.stop()
+
     log.info("spark tutorial run successfully !")
   }
 }

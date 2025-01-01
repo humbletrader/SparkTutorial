@@ -8,5 +8,7 @@
 .idea/
 target/
 output/
+spark-warehouse/
+metastore_db/
 
 todo.txt
