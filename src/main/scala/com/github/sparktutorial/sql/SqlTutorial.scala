@@ -1,4 +1,4 @@
-package com.github.sparktutorial.dataframes
+package com.github.sparktutorial.sql
 
 import com.github.sparktutorial.config.SparkTutorialConfigReader
 import com.github.sparktutorial.utils.logging.Logging
@@ -45,22 +45,36 @@ object SqlTutorial extends SparkTutorialConfigReader with Logging {
     val sqlResultDataFrame = spark.sql(
       """
         |select * from (
-        | select first_name, last_name, department, salary, dense_rank() over(order by salary desc) as rank from emp_dept_table
+        |   select first_name, last_name, department, salary, dense_rank() over(order by salary desc) as rank from emp_dept_table
         |) where rank = 5
-        |""".stripMargin)
+        |""".stripMargin
+    )
 
     sqlResultDataFrame.show()
     sqlResultDataFrame.explain(ExtendedMode.name)
 
-    log.info("select the 2nd largest salary with partition on department")
+    log.info("select the 2nd largest salary for each department")
     val rankWithPartition = spark.sql(
       """
         |select * from (
         | select first_name, last_name, department, salary, dense_rank() over(partition by department order by salary desc) as rank from emp_dept_table
         |) where rank = 2
-        |""".stripMargin)
-
+        |""".stripMargin
+    )
     rankWithPartition.show()
+
+    log.info("select duplicate salaries")
+    val duplicateSalaries = spark.sql(
+      """
+        | select * from (
+        |   select first_name, last_name, department, salary, count(salary) over(partition by salary) as count_salary
+        |   from emp_dept_table
+        | ) where count_salary > 1
+        |""".stripMargin
+    )
+    duplicateSalaries.show()
+
+
 
   }
 }
