@@ -31,6 +31,7 @@ Spark tutorial (with scala)
 
 ## Joins
  * [Types of joins](https://www.waitingforcode.com/apache-spark-sql/join-types-spark-sql/read)
+ * [Sort Merge join explained](https://www.waitingforcode.com/apache-spark-sql/sort-merge-join-spark-sql/read)
  * [Joins Explained](https://medium.com/@amarkrgupta96/join-strategies-in-apache-spark-a-hands-on-approach-d0696fc0a6c9)
 
 
