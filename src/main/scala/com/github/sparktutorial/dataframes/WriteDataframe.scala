@@ -57,6 +57,10 @@ object WriteDataframe extends SparkTutorialConfigReader with Logging {
     val personsFromTable = spark.read.table("persons_table")
     personsFromTable.show
 
+    val descSQL = spark.sql(s"DESC EXTENDED persons_table")
+      //.filter($"col_name".contains("Partition") || $"col_name".contains("Bucket") || $"col_name".contains("Sort"))
+    descSQL.show(numRows = 100, truncate = false)
+
     spark.stop()
   }
 
