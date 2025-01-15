@@ -2,9 +2,10 @@ package com.github.sparktutorial.rdd
 
 import com.github.sparktutorial.config.SparkTutorialConfigReader
 import com.github.sparktutorial.utils.logging.Logging
+import org.apache.spark.TaskContext
 import org.apache.spark.sql.SparkSession
 
-object RddJoins extends SparkTutorialConfigReader with Logging {
+object RddOperations extends SparkTutorialConfigReader with Logging {
 
   def main(args: Array[String]): Unit = {
 
@@ -23,10 +24,10 @@ object RddJoins extends SparkTutorialConfigReader with Logging {
     //val firstAndLastNames = sc.parallelize(firstNames).zip(sc.parallelize(lastNames))
     //org.apache.spark.SparkException: Can only zip RDDs with same number of elements in each partition
 
-    val firstNames = Map(1 -> "aaaa", 2 -> "bbbb", 3 -> "cccc", 4 -> "DDDD")
+    val firstNames = 1 to 10000 map { i => (i, s"first_name $i") }
     val lastNames = Map(1 -> "aaa", 2 -> "bbb", 3 -> "ccc", 5 -> "EEE")
 
-    val rddFirstNames = sc.parallelize(firstNames.toSeq)
+    val rddFirstNames = sc.parallelize(firstNames, 50)
     val rddLastNames = sc.parallelize(lastNames.toSeq)
 
     val joined = rddFirstNames.join(rddLastNames)
