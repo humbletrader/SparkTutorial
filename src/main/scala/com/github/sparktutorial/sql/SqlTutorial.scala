@@ -73,8 +73,5 @@ object SqlTutorial extends SparkTutorialConfigReader with Logging {
         |""".stripMargin
     )
     duplicateSalaries.show()
-
-
-
   }
 }
