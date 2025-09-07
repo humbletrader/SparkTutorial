@@ -30,6 +30,7 @@ object SqlTutorial extends SparkTutorialConfigReader with Logging {
         |1008,Gally,Johnson,Manager,Account,28000
         |1009,Richard,Grill,Account Coordinator,Account,12000
         |1010,Sofia,Ketty,Sales Coordinator,Sales,20000
+        |1011,Gigi,Berlogea,Software Engineer,IT,25000
         |""".stripMargin.lines.toList.asScala)
 
     import spark.implicits._
@@ -41,7 +42,14 @@ object SqlTutorial extends SparkTutorialConfigReader with Logging {
     frame.createOrReplaceTempView("emp_dept_table")
 
 
-    log.info("select the 5th largest salary")
+    log.info("using window functions in spark...")
+    val windowFunctions = spark.sql(
+      """
+        |select first_name, last_name, department, salary, dense_rank() over(partition by department order by salary desc) as rank from emp_dept_table
+        |""".stripMargin)
+    windowFunctions.show()
+
+    log.info("select the 5th largest salary in each department")
     val sqlResultDataFrame = spark.sql(
       """
         |select * from (

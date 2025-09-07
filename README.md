@@ -13,7 +13,7 @@ Spark tutorial (with scala)
  * [File Formats: Parquet](https://medium.com/@siladityaghosh/understanding-the-parquet-file-format-a-comprehensive-guide-b06d2c4333db)
  * [File Formats: Parquet and Delta Lake](https://youtu.be/1j8SdS7s_NY?feature=shared) 
  * [Tungsten project](https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html)
- * Serialization difference beteeen RDD and dataframes : see the markdown in main/scala/sqltutorial/Tungsten.md
+ * Serialization difference beteeen RDD and dataframes: see the markdown in main/scala/sqltutorial/Tungsten.md
  * [Catalist optimizer](https://www.databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html)
 
 ## RDDs
@@ -22,13 +22,19 @@ Spark tutorial (with scala)
  * [Caching/Persisting/checkpointing](https://medium.com/@john_tringham/spark-concepts-simplified-cache-persist-and-checkpoint-225eb1eef24b)
 
 ## Dataframes/Datasets
+
+### Partitioning 
  * [Repartition/Coalesce/PartitionBy](https://medium.com/@vikaskumar.ran/spark-repartition-vs-coalesce-and-when-to-use-which-3f269b47a5dd)
+
+### Query optimization / Logical plan / Physical plan
  * [Catalyst optimizer: Logical plan, Physical plan, Code generation](https://medium.com/datalex/sparks-logical-and-physical-plans-when-why-how-and-beyond-8cd1947b605a)
  * [Logical and Physical Plan](https://medium.com/datalex/sparks-logical-and-physical-plans-when-why-how-and-beyond-8cd1947b605a)
- * [Video explanation for logical and physical plan](https://youtu.be/GtRGwUUSUB4?feature=shared)   
+ * [Video explanation for logical and physical plan](https://youtu.be/GtRGwUUSUB4?feature=shared)
+
+### Partition by and bucketing
  * [PartitionBy vs Bucketing](https://medium.com/@paulamaranon/partitionby-vs-bucketing-in-apache-spark-42a3cec2d22f)
  * [More on bucketing](https://jaceklaskowski.gitbooks.io/mastering-spark-sql/content/spark-sql-bucketing.html)
- * Disk Partitioning vs. Memory Partitioning : todo
+ * Input partitioning / output partitioning / in memory partitioning - todo 
  * [SaveAsTable vs Save](https://medium.com/@tomhcorbin/data-storage-in-pyspark-save-vs-saveastable-8787e9370dde)
 
 ## Joins
@@ -46,8 +52,6 @@ Spark tutorial (with scala)
 
 ## Todo
 * check if spark sql supports lateral joins 
-* partitonBy vs bucketBy
-* window functions
 * data lakes
 * databricks
    

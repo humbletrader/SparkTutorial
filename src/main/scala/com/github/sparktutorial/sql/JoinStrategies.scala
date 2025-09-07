@@ -32,7 +32,7 @@ object JoinStrategies extends SparkTutorialConfigReader with Logging {
     //    +- BroadcastExchange HashedRelationBroadcastMode(List(cast(input[0, int, false] as bigint)),false), [plan_id=18]
     //      +- LocalTableScan [id#42, firstName#43, lastName#44, department#45, salary#46]
 
-    //forcing an shufle hash join
+    //forcing a shufle hash join
     personsDS.join(employeesDS.hint("shuffle_hash"), personsDS("id") === employeesDS("id"), "inner").explain()
     //== Physical Plan ==
     //AdaptiveSparkPlan isFinalPlan=false
@@ -41,5 +41,7 @@ object JoinStrategies extends SparkTutorialConfigReader with Logging {
     //     :  +- LocalTableScan [id#5, firstName#6, lastName#7, gender#8, strDateOfBirth#9]
     //  +- Exchange hashpartitioning(id#42, 200), ENSURE_REQUIREMENTS, [plan_id=34]
     //     +- LocalTableScan [id#42, firstName#43, lastName#44, department#45, salary#46]
+
+    //other dataset join hints: broadcast, merge, shuffle_hash, shuffle_replicate_nl = cartesian product
   }
 }
